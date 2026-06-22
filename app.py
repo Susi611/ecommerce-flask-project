@@ -215,10 +215,23 @@ def view_orders():
     if 'user' not in session:
         return redirect('/login')
 
-    user_orders = orders.find({"customer": session['user']})
+    user_orders = list(orders.find({"customer": session['user']}))
 
-    return render_template("orders.html", orders=user_orders)
+    for order in user_orders:
+        order_products = []
 
+        for pid in order['products']:
+            product = products.find_one({"_id": ObjectId(pid)})
+
+            if product:
+                order_products.append(product)
+
+        order['product_details'] = order_products
+
+    return render_template(
+        "orders.html",
+        orders=user_orders
+    )
 
 # =========================
 # ADMIN LOGIN (MongoDB)
@@ -411,7 +424,8 @@ def profile():
 # =========================
 # RUN APP
 # =========================
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
-    
-    
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
