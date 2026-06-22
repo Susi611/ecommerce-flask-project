@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h2>Edit Product</h2>
+
+    <form method="POST">
+
+        <input class="form-control"
+               type="text"
+               name="name"
+               value="{{ product.name }}"
+               required>
+
+        <input class="form-control"
+               type="text"
+               name="price"
+               value="{{ product.price }}"
+               required>
+
+        <input class="form-control"
+               type="text"
+               name="image"
+               value="{{ product.image }}"
+               required>
+
+        <button class="form-btn" type="submit">Update Product</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

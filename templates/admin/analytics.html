@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI,sans-serif;
+background:#f4f7fc;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:#111827;
+padding-top:20px;
+}
+
+.sidebar a{
+display:block;
+padding:15px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#2563eb;
+}
+
+.main{
+margin-left:250px;
+padding:30px;
+}
+
+.chart-box{
+background:white;
+padding:25px;
+margin-bottom:30px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<a href="/admin/dashboard">📊 Dashboard</a>
+<a href="/admin/add_product">➕ Add Product</a>
+<a href="/admin/orders">📦 Orders</a>
+<a href="/admin/customers">👥 Customers</a>
+<a href="/admin/analytics">📈 Analytics</a>
+<a href="/admin/profile">👤 Profile</a>
+</div>
+
+<div class="main">
+
+<h1>Sales Analytics</h1>
+
+<div class="chart-box">
+<canvas id="salesChart"></canvas>
+</div>
+
+<div class="chart-box">
+<canvas id="orderChart"></canvas>
+</div>
+
+</div>
+
+<script>
+
+new Chart(
+document.getElementById("salesChart"),
+{
+type:"bar",
+data:{
+labels:["Jan","Feb","Mar","Apr","May","Jun"],
+datasets:[{
+label:"Revenue",
+data:[10000,15000,20000,25000,30000,35000]
+}]
+}
+}
+);
+
+new Chart(
+document.getElementById("orderChart"),
+{
+type:"doughnut",
+data:{
+labels:["Accepted","Pending","Rejected"],
+datasets:[{
+data:[70,20,10]
+}]
+}
+}
+);
+
+</script>
+
+</body>
+</html>

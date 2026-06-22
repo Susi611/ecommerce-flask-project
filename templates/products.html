@@ -1,0 +1,96 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+     <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">E-Shop</div>
+
+    <div class="nav-links">
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+        <a href="/orders">Orders</a>
+        <a href="/logout">Loout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <form action="/search" method="GET" class="premium-search">
+
+    <input
+        type="text"
+        name="keyword"
+        placeholder="Search Nike, Adidas, Puma..."
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+</form>
+<h2 class="section-title">
+    Available Products ({{ products|length }})
+</h2>
+
+  <div class="products">
+
+        {% for p in products %}
+
+        <div class="card">
+
+            <img src="{{ p.image }}">
+
+            <div class="card-body">
+
+    <h3>{{ p.name }}</h3>
+
+    {% if p.brand %}
+    <p><strong>Brand:</strong> {{ p.brand }}</p>
+    {% endif %}
+
+    {% if p.category %}
+    <p><strong>Category:</strong> {{ p.category }}</p>
+    {% endif %}
+
+    {% if p.rating %}
+    <div class="rating">
+        ⭐ {{ p.rating }}
+    </div>
+    {% endif %}
+
+    <div class="price">
+        ₹{{ p.price }}
+    </div>
+
+    {% if p.stock %}
+    <p><strong>Stock:</strong> {{ p.stock }}</p>
+    {% endif %}
+
+    <a class="card-btn" href="/add_cart/{{ p._id }}">
+        <i class="fas fa-cart-plus"></i>
+        Add To Cart
+    </a>
+
+</div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html> 

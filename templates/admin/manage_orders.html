@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Orders</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">Admin Panel</div>
+
+    <div class="nav-links">
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/add_product">Add Product</a>
+        <a href="/admin/orders">Orders</a>
+        <a href="/admin">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h2>Manage Orders</h2>
+
+    <table>
+
+        <tr>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for order in orders %}
+
+        <tr>
+
+            <td>{{ order.customer }}</td>
+
+            <td>{{ order.status }}</td>
+
+            <td>
+
+                <a href="/admin/accept/{{ order._id }}" class="btn">Accept</a>
+
+                <a href="/admin/reject/{{ order._id }}" class="btn">Reject</a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>
