@@ -8,10 +8,7 @@ app.secret_key = "ecommerce_secret_key"
 # =========================
 # MongoDB Atlas Connection
 # =========================
-client = MongoClient(
-    "mongodb+srv://susisushanthini_db_user:6116164@cluster0.ttnchb1.mongodb.net/?appName=cluster0"
-)
-
+client = MongoClient("mongodb+srv://susisushanthini_db_user:susi12345@cluster0.ttnchb1.mongodb.net/?appName=cluster0")
 db = client["EcommerceDB"]
 
 users = db["users"]
