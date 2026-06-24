@@ -1,14 +1,26 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
+from pymongo import MongoClient
 
 app = Flask(__name__)
-app.secret_key = "ecommerce_secret_key"
+app.secret_key = "SECRET_KEY"
 
 # =========================
 # MongoDB Atlas Connection
 # =========================
-client = MongoClient("mongodb+srv://susisushanthini_db_user:susi12345@cluster0.ttnchb1.mongodb.net/?appName=cluster0")
+MONGO_URI = os.environ.get("MONGO_URI")
+
+client = MongoClient(MONGO_URI)
+
+try:
+    client.admin.command("ping")
+    print("✅ MongoDB Connected Successfully")
+except Exception as e:
+    print("❌ MongoDB Connection Error:", e)
+
+
 db = client["EcommerceDB"]
 
 users = db["users"]
