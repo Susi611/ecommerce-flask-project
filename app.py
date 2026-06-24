@@ -10,9 +10,9 @@ app.secret_key = "SECRET_KEY"
 # =========================
 # MongoDB Atlas Connection
 # =========================
-MONGO_URI = os.environ.get("MONGO_URI")
+mongodb_uri = os.environ.get("mongodb_uri")
 
-client = MongoClient(MONGO_URI)
+client = MongoClient(mongodb_uri)
 
 try:
     client.admin.command("ping")
