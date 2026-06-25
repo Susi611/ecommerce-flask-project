@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Product</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+<title>Add Product</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
 
 <div class="form-container">
 
-    <h2>Add Product</h2>
+    <h1>➕ Add New Product</h1>
 
     <form method="POST">
 
-        <input class="form-control" type="text" name="name" placeholder="Product Name" required>
+        <input class="form-control"
+               type="text"
+               name="name"
+               placeholder="Product Name"
+               required>
 
-        <input class="form-control" type="text" name="price" placeholder="Price" required>
+        <input class="form-control"
+               type="text"
+               name="price"
+               placeholder="Price"
+               required>
 
-        <input class="form-control" type="text" name="image" placeholder="Image URL" required>
+        <input class="form-control"
+               type="text"
+               name="image"
+               placeholder="Image URL"
+               required>
 
-        <button class="form-btn" type="submit">Add Product</button>
+        <button class="form-btn">
+            Add Product
+        </button>
 
     </form>
 

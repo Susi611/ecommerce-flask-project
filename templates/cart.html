@@ -1,48 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+<title>Shopping Cart | StepStyle</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
-
 <body>
 
+<!-- Navbar -->
+
 <div class="navbar">
-    <div class="logo">E-Shop</div>
+
+    <div class="logo">
+        👟 StepStyle
+    </div>
 
     <div class="nav-links">
-        <a href="/products">Products</a>
+        <a href="/products">Shop</a>
         <a href="/orders">Orders</a>
+        <a href="/cart">Cart</a>
         <a href="/logout">Logout</a>
     </div>
+
 </div>
 
 <div class="container">
 
-    <h2>Your Cart</h2>
+    <h1 class="section-title">
+        🛒 My Shopping Cart
+    </h1>
+
+    {% set total = 0 %}
 
     {% for item in items %}
 
-    <div class="cart-item">
+    {% set total = total + item.price|int %}
 
-        <div>
-            <h3>{{ item.name }}</h3>
-            <p>₹{{ item.price }}</p>
+    <div class="cart-card">
+
+        <div class="cart-image">
+            <img src="{{ item.image }}">
         </div>
 
-        <a href="/remove_cart/{{ item._id }}" class="btn">
-            Remove
-        </a>
+        <div class="cart-details">
+
+            <h2>{{ item.name }}</h2>
+
+            {% if item.brand %}
+            <p><strong>Brand:</strong> {{ item.brand }}</p>
+            {% endif %}
+
+            {% if item.category %}
+            <p><strong>Category:</strong> {{ item.category }}</p>
+            {% endif %}
+
+            <div class="price">
+                ₹{{ item.price }}
+            </div>
+
+        </div>
+
+        <div class="cart-actions">
+
+            <a href="/remove_cart/{{ item._id }}"
+               class="remove-btn">
+
+                <i class="fas fa-trash"></i>
+                Remove
+
+            </a>
+
+        </div>
 
     </div>
 
     {% endfor %}
 
-    <a href="/place_order" class="btn">
-        Place Order
-    </a>
+    <div class="cart-summary">
+
+        <h2>
+            Total Items: {{ items|length }}
+        </h2>
+
+        <h1>
+            Total Amount:
+            ₹{{ total }}
+        </h1>
+
+        <a href="/place_order"
+           class="checkout-btn">
+
+            <i class="fas fa-credit-card"></i>
+            Place Order
+
+        </a>
+
+    </div>
 
 </div>
 
